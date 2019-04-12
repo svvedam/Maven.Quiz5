@@ -1,15 +1,17 @@
 package rocks.zipcode.io.quiz4.generics;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 /**
  * @author leon on 18/12/2018.
  */
-public class Group<T> implements Iterable{
+public class Group<T> implements Iterable<T>, GroupInterface<T>{
     List<T> groupList;
     public Group() {
+        super();
         groupList = new ArrayList<>();
     }
 
@@ -36,6 +38,7 @@ public class Group<T> implements Iterable{
     }
 
     public void delete(T value) {
+        groupList.remove(value);
     }
 
     public void clear() {
@@ -43,18 +46,6 @@ public class Group<T> implements Iterable{
     }
 
     public Iterator<T> iterator() {
-        int current = groupList.size()-1;
-
-        return new Iterator<T>() {
-            @Override
-            public boolean hasNext() {
-                 return ( current >= 0 );
-            }
-
-            @Override
-            public T next() {
-                return groupList.get( current + 1 );
-            }
-        };
+        return groupList.iterator();
     }
 }
